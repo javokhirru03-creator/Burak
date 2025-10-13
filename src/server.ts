@@ -9,5 +9,16 @@
 
 import dotenv from "dotenv";
 dotenv.config();
-console.log("PORT:", process.env.PORT);
-console.log("MONGO_URL:", process.env.MONGO_URL);
+import mongoose from "mongoose";
+import app from "./app";
+mongoose.set("strictQuery", false);
+mongoose
+  .connect(process.env.MONGO_URL as string, {})
+  .then((data) => {
+    console.log("MongoDB connected");
+    const PORT = process.env.PORT || 3000;
+    app.listen(PORT, () => {
+      console.log(`Server is running on port ${PORT}`);
+    });
+  })
+  .catch((err) => console.log(err));
