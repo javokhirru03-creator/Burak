@@ -15,9 +15,22 @@
 // console.log(getHighestIndex([5, 21, 12, 21, 8]));
 
 //..................................................Tack - H ..............................//
-function getPositive(arr: number[]): string {
-  return arr.filter((num) => num > 0).join("");
+// function getPositive(arr: number[]): string {
+//   return arr.filter((num) => num > 0).join("");
+// }
+
+// console.log(getPositive([1, -4, 2]));
+// console.log(typeof getPositive([1, -4, 2]));
+
+//..................................................Tack - H2 ..............................//
+function getDigits(str: string): string {
+  let result = "";
+  for (let a of str) {
+    if (a >= "0" && a <= "9") {
+      result += a;
+    }
+  }
+  return result;
 }
 
-console.log(getPositive([1, -4, 2]));
-console.log(typeof getPositive([1, -4, 2]));
+console.log(getDigits("m14i1t"));

@@ -1,5 +1,6 @@
 import { T } from "../libs/types/common";
 import { Request, Response } from "express";
+import {} from "../models/Member.service";
 const restarauntController: T = {};
 
 restarauntController.goHome = (req: Request, res: Response) => {
