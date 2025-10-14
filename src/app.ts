@@ -1,5 +1,8 @@
 import express from "express";
 import path from "path";
+import router from "./router";
+import routerAdmin from "./routerAdmin";
+
 // entrance
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -13,8 +16,7 @@ app.use(express.json());
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 //Routes
-app.get("/", (req, res) => {
-  res.send("Hello World");
-});
+app.use("/admin", routerAdmin); //BSSR: EJS
+app.use("/", router); // SPA: REACt
 
 export default app;
