@@ -23,14 +23,38 @@
 // console.log(typeof getPositive([1, -4, 2]));
 
 //..................................................Tack - H2 ..............................//
-function getDigits(str: string): string {
-  let result = "";
-  for (let a of str) {
-    if (a >= "0" && a <= "9") {
-      result += a;
+// function getDigits(str: string): string {
+//   let result = "";
+//   for (let a of str) {
+//     if (a >= "0" && a <= "9") {
+//       result += a;
+//     }
+//   }
+//   return result;
+// }
+
+// console.log(getDigits("m14i1t"));
+
+//..................................................Tack - I ..............................//
+function majorityElement(arr: number[]): number {
+  const count: Record<number, number> = {};
+
+  for (const num of arr) {
+    count[num] = (count[num] || 0) + 1;
+  }
+
+  let b = 0;
+  let a = arr[0];
+
+  for (const num in count) {
+    if (count[num] > b) {
+      b = count[num];
+      a = Number(num);
     }
   }
-  return result;
+
+  return a;
 }
 
-console.log(getDigits("m14i1t"));
+// TEST
+console.log(majorityElement([1, 2, 3, 4, 5, 4, 3, 4])); // 4

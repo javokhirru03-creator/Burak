@@ -41,6 +41,7 @@ restarauntController.processSignup = async (req: Request, res: Response) => {
     console.log(req.body);
     const newMember: MemberInput = req.body;
     newMember.MemberType = MemberType.RESTARAUNT;
+    0;
 
     const memberServise = new MemberServise();
     await memberServise.processSignup(newMember);
