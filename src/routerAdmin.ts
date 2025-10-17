@@ -2,10 +2,18 @@ import express from "express";
 const routerAdmin = express.Router();
 import restarauntController from "./controllers/restaraunt.controller";
 
+//restaraunt routes
 routerAdmin.get("/", restarauntController.goHome);
 
-routerAdmin.get("/login", restarauntController.getlogin);
+routerAdmin
+  .get("/login", restarauntController.getlogin)
+  .post("/login", restarauntController.processlogin);
 
-routerAdmin.get("/singnup", restarauntController.getsingnup);
+routerAdmin
+  .get("/singnup", restarauntController.getsingnup)
+  .post("/singnup", restarauntController.processingnup);
 
 export default routerAdmin;
+
+//product routes
+//user routes

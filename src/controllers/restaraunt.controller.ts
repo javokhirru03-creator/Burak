@@ -1,5 +1,6 @@
-import { T } from "../libs/types/common";
 import { Request, Response } from "express";
+import { T } from "../controllers/libs/types/common";
+
 import {} from "../models/Member.service";
 const restarauntController: T = {};
 
@@ -21,6 +22,21 @@ restarauntController.getlogin = (req: Request, res: Response) => {
 restarauntController.getsingnup = (req: Request, res: Response) => {
   try {
     res.send("singnup page");
+  } catch (error) {
+    console.error("Error in goHome:", error);
+  }
+};
+
+restarauntController.processlogin = (req: Request, res: Response) => {
+  try {
+    res.send("done");
+  } catch (error) {
+    console.error("Error in goHome:", error);
+  }
+};
+restarauntController.processingnup = (req: Request, res: Response) => {
+  try {
+    res.send("done");
   } catch (error) {
     console.error("Error in goHome:", error);
   }
