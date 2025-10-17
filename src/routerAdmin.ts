@@ -10,8 +10,8 @@ routerAdmin
   .post("/login", restarauntController.processlogin);
 
 routerAdmin
-  .get("/singnup", restarauntController.getsingnup)
-  .post("/singnup", restarauntController.processingnup);
+  .get("/signup", restarauntController.getsignup)
+  .post("/signup", restarauntController.processSignup);
 
 export default routerAdmin;
 
