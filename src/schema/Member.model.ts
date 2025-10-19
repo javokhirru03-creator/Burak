@@ -43,7 +43,7 @@ const MemberSchema: Schema = new Schema(
     memberImage: {
       type: String,
     },
-    memberPoint: {
+    memberPoints: {
       type: Number,
       default: 0,
     },

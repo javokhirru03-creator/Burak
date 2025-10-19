@@ -4,13 +4,10 @@ import Errors, { HttpCode, Message } from "../controllers/libs/Error";
 import { MemberType } from "../controllers/libs/enums/member.enum";
 
 class MemberService {
-  private readonly memberModel;
+  private readonly memberModel = MemberModel;
 
-  constructor() {
-    this.memberModel = MemberModel;
-  }
+  constructor() {}
 
-  // ...existing code...
   public async processSignup(input: MemberInput): Promise<Member> {
     const exist = await this.memberModel
       .findOne({ memberType: MemberType.RESTARAUNT })
@@ -19,14 +16,12 @@ class MemberService {
 
     try {
       const result = await this.memberModel.create(input);
-      const dto = result.toObject() as Member;
-      dto.memberPassword = "";
-      return dto;
+      result.memberPassword = ""; // parolni natijadan olib tashlash
+      return result;
     } catch (err) {
       throw new Errors(HttpCode.BAD_REQUEST, Message.CREATE_FAILED);
     }
   }
-  // ...existing code...
 }
 
 export default MemberService;
