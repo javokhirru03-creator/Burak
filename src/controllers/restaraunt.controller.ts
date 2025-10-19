@@ -3,7 +3,7 @@ import { Request, Response } from "express";
 import { T } from "../controllers/libs/types/common";
 import MemberServise from "../models/Member.service";
 import {} from "../models/Member.service";
-import { MemberInput } from "../controllers/libs/types/member";
+import { LoginInput, MemberInput } from "../controllers/libs/types/member";
 const restarauntController: T = {};
 
 restarauntController.goHome = (req: Request, res: Response) => {
@@ -29,8 +29,13 @@ restarauntController.getsignup = (req: Request, res: Response) => {
   }
 };
 
-restarauntController.processlogin = (req: Request, res: Response) => {
+restarauntController.processlogin = async (req: Request, res: Response) => {
   try {
+    const input: LoginInput = req.body;
+    console.log(input);
+
+    const memberServise = new MemberServise();
+    const result = await memberServise.processlogin(input);
     res.send("done");
   } catch (error) {
     console.error("Error in goHome:", error);

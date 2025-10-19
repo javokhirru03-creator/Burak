@@ -15,6 +15,10 @@ export enum Message {
   CREATE_FAILED = "Failed to create the resource.",
   UPDATE_FAILED = "Failed to update the resource.",
   DELETE_FAILED = "Failed to delete the resource.",
+  LOGIN_FAILED = "Invalid nickname or password.",
+  NO_MEMBER_NICK = "Member nickname is required.",
+  USED_NICK_PHONE = "This phone number is already in use.",
+  WRONG_PASSWORD = "The password provided is incorrect!.",
 }
 
 class Errors extends Error {
