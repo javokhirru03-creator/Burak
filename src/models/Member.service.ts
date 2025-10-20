@@ -6,7 +6,7 @@ import {
 } from "../controllers/libs/types/member";
 import Errors, { HttpCode, Message } from "../controllers/libs/Error";
 import { MemberType } from "../controllers/libs/enums/member.enum";
-
+import * as bcrypt from "bcryptjs";
 class MemberService {
   private readonly memberModel = MemberModel;
 
@@ -29,19 +29,25 @@ class MemberService {
   public async processlogin(input: LoginInput): Promise<Member> {
     const member = await this.memberModel
       .findOne(
-        { memberNIck: input.memberNIck },
-        { memberNick: 1, MemberPassword: 1 }
+        { memberNIck: input.memberNIck }, // nickname bo'yicha qidirish
+        { memberNick: 1, MemberPassword: 1 } // faqat kerakli maydonlarni olish
       )
       .exec();
     if (!member) {
       throw new Errors(HttpCode.NOT_FOUND, Message.NO_MEMBER_NICK);
     }
-    const isMatch = member.memberPassword === input.memberPassword; // parolni tekshirish
+    const salt = await bcrypt.genSalt(); // salt yaratish
+    input.memberPassword = await bcrypt.hash(input.memberPassword, salt); // parolni hash qilish
+    //const isMatch = member.memberPassword === input.memberPassword; // parolni tekshirish
+    const isMatch = await bcrypt.compare(
+      input.memberPassword,
+      member.memberPassword
+    ); // parolni tekshirish
     if (!isMatch) {
       throw new Errors(HttpCode.UNAUTHORIZED, Message.WRONG_PASSWORD);
-    }
+    } // agar parol to'g'ri bo'lsa, member ma'lumotlarini qaytarish
 
-    return await this.memberModel.findById(member._id).exec();
+    return await this.memberModel.findById(member._id).exec(); // to'liq member ma'lumotlarini olish
   }
 }
 
