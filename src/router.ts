@@ -1,11 +1,9 @@
-// import express from "express";
-// const router = express.Router();
-// // import memberController from "./controllers/member.controller";
+import express from "express";
+const router = express.Router();
+import memberController from "./controllers/member.controller";
+//member routes
+router.get("/login", memberController.login);
 
-// router.get("/", memberController.goHome);
+router.get("/singnup", memberController.singnup);
 
-// router.get("/login", memberController.getlogin);
-
-// router.get("/singnup", memberController.getsingnup);
-
-// export default router;
+export default router;
