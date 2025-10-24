@@ -23,6 +23,7 @@ restarauntController.getlogin = (req: Request, res: Response) => {
     res.render("login");
   } catch (error) {
     console.error("Error in goHome:", error);
+    res.redirect("/admin");
   }
 };
 
@@ -31,6 +32,7 @@ restarauntController.getsignup = (req: Request, res: Response) => {
     res.render("signup");
   } catch (error) {
     console.error("Error in goHome:", error);
+    res.redirect("/admin");
   }
 };
 
@@ -50,6 +52,11 @@ restarauntController.processlogin = async (req: AdminRquest, res: Response) => {
     res.send(result);
   } catch (error) {
     console.error("Error in goHome:", error);
+    const message =
+      error instanceof Error ? error.message : Message.GENERIC_ERROR;
+    res.send(
+      `<script> alert("${message}");window.location.replace('admin/login')</script>`
+    );
   }
 };
 restarauntController.processSignup = async (
@@ -73,10 +80,24 @@ restarauntController.processSignup = async (
     res.send(result);
   } catch (error) {
     console.error("Error in goHome:", error);
-    res.send(error);
+    const message =
+      error instanceof Error ? error.message : Message.GENERIC_ERROR;
+    res.send(
+      `<script> alert("${message}");window.location.replace('admin/signup')</script>`
+    ); //ejs da alert korsatish
   }
 };
-
+restarauntController.logout = async (req: AdminRquest, res: Response) => {
+  try {
+    console.log("logout");
+    req.session.destroy(function () {
+      res.redirect("/admin");
+    });
+  } catch (error) {
+    console.error("Error in goHome:", error);
+    res.redirect("/admin");
+  }
+};
 restarauntController.checkAuthSession = async (
   req: AdminRquest,
   res: Response

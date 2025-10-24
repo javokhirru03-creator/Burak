@@ -13,6 +13,8 @@ routerAdmin
   .get("/signup", restarauntController.getsignup)
   .post("/signup", restarauntController.processSignup);
 
+routerAdmin.get("/logout", restarauntController.logout);
+
 routerAdmin.get("/check-me", restarauntController.checkAuthSession);
 
 export default routerAdmin;
