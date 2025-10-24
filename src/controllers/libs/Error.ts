@@ -19,6 +19,7 @@ export enum Message {
   NO_MEMBER_NICK = "Member nickname is required.",
   USED_NICK_PHONE = "This phone number is already in use.",
   WRONG_PASSWORD = "The password provided is incorrect!.",
+  NO_AUTH_SESSION = "No active authentication session found.",
 }
 
 class Errors extends Error {

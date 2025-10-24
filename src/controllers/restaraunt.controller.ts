@@ -8,6 +8,7 @@ import {
   LoginInput,
   MemberInput,
 } from "../controllers/libs/types/member";
+import { Message } from "../controllers/libs/Error";
 const restarauntController: T = {};
 
 restarauntController.goHome = (req: Request, res: Response) => {
@@ -70,6 +71,21 @@ restarauntController.processSignup = async (
     });
 
     res.send(result);
+  } catch (error) {
+    console.error("Error in goHome:", error);
+    res.send(error);
+  }
+};
+
+restarauntController.checkAuthSession = async (
+  req: AdminRquest,
+  res: Response
+) => {
+  try {
+    console.log("checkAuthSession");
+    if (req.session.member)
+      res.send(`<script> alert("${req.session.member.memberNIck}")</script>`);
+    else res.send(`<script> alert("${Message.NO_AUTH_SESSION}")</script>`);
   } catch (error) {
     console.error("Error in goHome:", error);
     res.send(error);
