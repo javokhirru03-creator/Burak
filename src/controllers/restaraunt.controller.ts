@@ -8,14 +8,14 @@ const restarauntController: T = {};
 
 restarauntController.goHome = (req: Request, res: Response) => {
   try {
-    res.send("home page");
+    res.render("home");
   } catch (error) {
     console.error("Error in goHome:", error);
   }
 };
 restarauntController.getlogin = (req: Request, res: Response) => {
   try {
-    res.send("login page");
+    res.render("login");
   } catch (error) {
     console.error("Error in goHome:", error);
   }
@@ -23,7 +23,7 @@ restarauntController.getlogin = (req: Request, res: Response) => {
 
 restarauntController.getsignup = (req: Request, res: Response) => {
   try {
-    res.send("singnup page");
+    res.render("signup");
   } catch (error) {
     console.error("Error in goHome:", error);
   }
