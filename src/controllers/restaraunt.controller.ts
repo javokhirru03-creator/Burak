@@ -3,7 +3,11 @@ import { Request, Response } from "express";
 import { T } from "../controllers/libs/types/common";
 import MemberServise from "../models/Member.service";
 import {} from "../models/Member.service";
-import { LoginInput, MemberInput } from "../controllers/libs/types/member";
+import {
+  AdminRquest,
+  LoginInput,
+  MemberInput,
+} from "../controllers/libs/types/member";
 const restarauntController: T = {};
 
 restarauntController.goHome = (req: Request, res: Response) => {
@@ -29,19 +33,28 @@ restarauntController.getsignup = (req: Request, res: Response) => {
   }
 };
 
-restarauntController.processlogin = async (req: Request, res: Response) => {
+restarauntController.processlogin = async (req: AdminRquest, res: Response) => {
   try {
     const input: LoginInput = req.body;
     console.log(input);
-
     const memberServise = new MemberServise();
     const result = await memberServise.processlogin(input);
-    res.send("done");
+
+    //session boshlash
+    req.session.member = result;
+    req.session.save(function () {
+      res.send(result);
+    });
+
+    res.send(result);
   } catch (error) {
     console.error("Error in goHome:", error);
   }
 };
-restarauntController.processSignup = async (req: Request, res: Response) => {
+restarauntController.processSignup = async (
+  req: AdminRquest,
+  res: Response
+) => {
   try {
     console.log(req.body);
     const newMember: MemberInput = req.body;
@@ -49,6 +62,12 @@ restarauntController.processSignup = async (req: Request, res: Response) => {
 
     const memberServise = new MemberServise();
     const result = await memberServise.processSignup(newMember);
+
+    //session boshlash
+    req.session.member = result;
+    req.session.save(function () {
+      res.send(result);
+    });
 
     res.send(result);
   } catch (error) {
