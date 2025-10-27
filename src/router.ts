@@ -1,9 +1,8 @@
-import express from "express";
+import express from 'express';
 const router = express.Router();
-import memberController from "./controllers/member.controller";
-//member routes
-router.get("/login", memberController.login);
+import memberController from './controllers/member.controller';
 
-router.get("/singnup", memberController.singnup);
+router.post('/login', memberController.login);
+router.post('/signup', memberController.signup);
 
 export default router;

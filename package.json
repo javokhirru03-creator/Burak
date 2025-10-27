@@ -1,13 +1,13 @@
 {
   "name": "burak",
   "version": "1.0.0",
-  "description": "This is burak project backend",
+  "description": "Thi is project backend",
   "main": "src/server.ts",
   "scripts": {
     "start": "ts-node src/server.ts",
     "start:dev": "nodemon --exec ts-node src/server.ts",
-    "train": "nodemon --exec ts-node src/train.ts",
     "build": "tsc",
+    "train": "nodemon train.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "MIT",
@@ -21,7 +21,7 @@
     "express-session": "^1.17.3",
     "moment": "^2.29.4",
     "mongodb": "^3.2.6",
-    "mongoose": "6.2.9",
+    "mongoose": "^6.2.9",
     "morgan": "^1.10.0"
   },
   "devDependencies": {
