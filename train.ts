@@ -111,7 +111,7 @@ console.log(findLongestWord("I came from Uzbekistan!")); */
 
 // MIT TASK I
 
-function countVowels(str: string): number {
+/* function countVowels(str: string): number {
   let vowels = "aeiouAEIOU"; 
   let count = 0;
 
@@ -123,4 +123,18 @@ function countVowels(str: string): number {
   return count;
 }
 
-console.log(countVowels("string")); 
+console.log(countVowels("string"));  */
+
+
+
+// MIT TASK L
+
+
+function reverseSentence(str: string): string {
+  return str
+    .split(" ")               
+    .map(word => word.split("").reverse().join(""))
+    .join(" ");              
+}
+
+console.log(reverseSentence("we like coding!")); 
