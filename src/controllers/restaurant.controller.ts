@@ -15,7 +15,7 @@ restaurantController.goHome = (req: Request, res: Response) => {
     console.log('goHome');
         // send | json | redirect| end | render
    }catch(err){
-    console.log('Error, goHome:', err);
+    console.log('Error, goHome:', err)
     res.redirect("/admin");
    }
 };

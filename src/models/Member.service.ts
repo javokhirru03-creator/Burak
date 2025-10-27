@@ -24,7 +24,7 @@ class MemberService {
     return result.toJSON();
   } catch (err) {
     console.error("Error, model:signup", err)
-    throw new Errors(HttpCode.BAD_REQUEST, Message.USE_NICK_PHONE);
+    throw new Errors(HttpCode.BAD_REQUEST, Message.USED_NICK_PHONE);
   }
 }
 
