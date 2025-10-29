@@ -17,7 +17,7 @@
 console.log(getHighestIndex([32, 100, 5, 21, 12, 21, 8, 9]));
  */
 
-// MIT TASK H 
+// MIT TASK H
 
 /* function getPositive(arr: number[]): string {
 
@@ -31,8 +31,6 @@ console.log(getHighestIndex([32, 100, 5, 21, 12, 21, 8, 9]));
 const result = getPositive([1, -1, 8, 3, 92, 0, -5]);
 console.log(result);     
 console.log(typeof result);  */
-
-
 
 // MIT TASK H2
 /* 
@@ -89,8 +87,6 @@ console.log(getDigits("m14i1t")); */
 
 console.log(majorityElement([1, 2, 3, 4, 5, 4, 3, 4]));  */
 
-
-
 // MIT TASK J
 
 /* function findLongestWord(str: string): string {
@@ -108,7 +104,6 @@ console.log(majorityElement([1, 2, 3, 4, 5, 4, 3, 4]));  */
 
 console.log(findLongestWord("I came from Uzbekistan!")); */
 
-
 // MIT TASK I
 
 /* function countVowels(str: string): number {
@@ -125,16 +120,28 @@ console.log(findLongestWord("I came from Uzbekistan!")); */
 
 console.log(countVowels("string"));  */
 
-
-
 // MIT TASK L
 
+// function reverseSentence(str: string): string {
+//   return str
+//     .split(" ")
+//     .map((word) => word.split("").reverse().join(""))
+//     .join(" ");
+// }
 
-function reverseSentence(str: string): string {
-  return str
-    .split(" ")               
-    .map(word => word.split("").reverse().join(""))
-    .join(" ");              
+// console.log(reverseSentence("! I love TypeScript"));
+
+// MIT TASK M
+interface SquareNumber {
+  number: number;
+  square: number;
 }
 
-console.log(reverseSentence("we like coding!")); 
+function getSquareNumbers(arr: number[]): SquareNumber[] {
+  return arr.map((num) => ({
+    number: num,
+    square: num * num,
+  }));
+}
+
+console.log(getSquareNumbers([1, 2, 3]));
