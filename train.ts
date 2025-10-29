@@ -145,3 +145,4 @@ function getSquareNumbers(arr: number[]): SquareNumber[] {
 }
 
 console.log(getSquareNumbers([1, 2, 3]));
+/// MIT TASK N
