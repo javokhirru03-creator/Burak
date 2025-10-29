@@ -50,7 +50,8 @@ restaurantController.processSignup = async (
     console.log("processSignup");
     console.log("body:", req.body);
     const file = req.file;
-    if(!file) throw new Errors(HttpCode.BAD_REQUEST, Message.SOMETHING_WENT_WRONG); 
+    if (!file)
+      throw new Errors(HttpCode.BAD_REQUEST, Message.SOMETHING_WENT_WRONG);
 
     const newMember: MemberInput = req.body;
     newMember.memberImage = file?.path.replace(/\\/g, "/");
@@ -85,7 +86,8 @@ restaurantController.processLogin = async (
 
     req.session.member = result;
     req.session.save(function () {
-      res.redirect("/admin/product/all");
+      // res.redirect("/admin/product/all");
+      res.send("DONE");
     });
   } catch (err) {
     console.log("Error, processLogin:", err);
