@@ -132,17 +132,3 @@ console.log(countVowels("string"));  */
 // console.log(reverseSentence("! I love TypeScript"));
 
 // MIT TASK M
-interface SquareNumber {
-  number: number;
-  square: number;
-}
-
-function getSquareNumbers(arr: number[]): SquareNumber[] {
-  return arr.map((num) => ({
-    number: num,
-    square: num * num,
-  }));
-}
-
-console.log(getSquareNumbers([1, 2, 3]));
-/// MIT TASK N

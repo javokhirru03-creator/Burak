@@ -1,21 +1,38 @@
-// < ========== TASK L Start ========== >
+// < ========== TASK M Start ========== >
 
-function getReverse(a: string) {
-  if(typeof a !== "string") {
-    console.log("Please, insert a string")
-  } else {
-    const sorted = a.split(" ").map(word => word.split("").reverse().join(""));
-    const result = sorted.join(" ");
-    console.log(result);
-  }
+interface SquareNumber {
+  number: number;
+  square: number;
 }
 
-getReverse("string number array");
+function getSquareNumbers(arr: number[]): SquareNumber[] {
+  return arr.map((num) => ({
+    number: num,
+    square: num * num,
+  }));
+}
 
-// < ========== TASK L End ========== >
+console.log(getSquareNumbers([1, 2, 3]));
 
+// < ========== TASK M End ========== >
 
+// // < ========== TASK L Start ========== >
 
+// function getReverse(a: string) {
+//   if(typeof a !== "string") {
+//     console.log("Please, insert a string")
+//   } else {
+//     const sorted = a.split(" ").map(word => word.split("").reverse().join(""));
+//     const result = sorted.join(" ");
+//     console.log(result);
+//   }
+// }
+
+// getReverse("string number array");
+
+// // < ========== TASK L End ========== >
+
+/// MIT TASK N
 
 // < ========== TASK K Start ========== >
 
@@ -34,8 +51,6 @@ getReverse("string number array");
 
 // console.log(countVowels("stIring"));
 // < ========== TASK K End ========== >
-
-
 
 // < ========== TASK J Start ========== >
 
