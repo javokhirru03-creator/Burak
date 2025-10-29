@@ -1,35 +1,17 @@
-import dotenv from 'dotenv'
+import dotenv from "dotenv";
 dotenv.config();
 
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 import app from "./app";
 
-mongoose.connect(process.env.MONGO_URL as string, {})
-.then(data => {
-    console.log("MongoDB connection succed");
-    const PORT = process.env.PORT ?? 3003;
+mongoose
+  .connect(process.env.MONGO_URL as string,{})
+  .then((data) => {
+    console.log("MongoDB connection succeed");
+    const PORT = process.env.PORT ?? 3000;
     app.listen(PORT, function() {
-        console.info(`The server is succefully on port: ${PORT}`);
-        console.info(`Admin project on http://localhost:${PORT}/admin \n`);
+        console.info(`The USER-side is running successfully on port: http://localhost:${PORT}`);
+        console.info(`The ADMIN-side is running successfully on port: http://localhost:${PORT}/admin/ \n`);
     });
-})
-.catch(err => {console.log("ERROR on connection MongoDB", err)});
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// Architectural pattern: MVC, Dependency Injection, MVP
-// MVC = MODEL VIEW CONTROLLER
-
-// Design pattern: Middleware, Decotar
+  })
+  .catch((err) => {console.log("ERROR on connection MongoDB", err)});
