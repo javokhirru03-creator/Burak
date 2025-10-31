@@ -1,8 +1,9 @@
+import { MemberType } from "./../libs/enums/member.enum";
 import MemberModel from "../schema/Member.model";
-import { LoginInput, Member, MemberInput } from "../libs/types/member";
+import { LoginInput, Member, MemberInput, MemberUpdateInput } from "../libs/types/member";
 import Errors, { HttpCode, Message } from "../libs/Error";
-import { MemberType } from "../libs/enums/member.enum";
 import * as bcrypt from "bcryptjs";
+import { shapeIntoMongooseObjectId } from "../libs/config";
 
 class MemberService {
   private readonly memberModel;
@@ -25,13 +26,13 @@ class MemberService {
       result.memberPassword = "";
       return result.toJSON();
     } catch (err) {
-        console.error("Error, model: signup >", err);
+      console.error("Error, model: signup >", err);
       throw new Errors(HttpCode.BAD_REQUEST, Message.USED_NICK_PHONE);
     }
   }
 
   public async login(input: LoginInput): Promise<Member> {
-    // TODO: Consider member status later 
+    // TODO: Consider member status later
     const member = await this.memberModel
       .findOne(
         { memberNick: input.memberNick },
@@ -96,6 +97,31 @@ class MemberService {
     }
 
     return await this.memberModel.findById(member._id).exec();
+  }
+
+  public async getUsers(): Promise<Member[]> {
+    const result = await this.memberModel
+      .find({ memberType: MemberType.USER })
+      .exec();
+    if(!result) throw new Errors(HttpCode.NOT_FOUND, Message.NO_DATA_FOUND);
+
+    return result;
+  }
+
+  public async updateChosenUser(input: MemberUpdateInput): Promise<Member> {
+    const original = await this.memberModel.findById(input._id).exec();
+    console.log(`Before: ${original?.memberNick} - ${original?.memberStatus}`);
+
+    input._id = shapeIntoMongooseObjectId(input._id);
+    const result = await this.memberModel
+      .findByIdAndUpdate({ _id: input._id}, input, { new: true})
+      .exec();
+
+    console.log(`After: ${result?.memberNick} - ${result?.memberStatus}`);
+
+    if(!result) throw new Errors(HttpCode.NOT_MODIFIED, Message.UPDATE_FAILED);
+
+    return result;
   }
 }
 

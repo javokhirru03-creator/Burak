@@ -1,38 +1,51 @@
-// < ========== TASK M Start ========== >
+// < ========== TASK N start ========== >
 
-interface SquareNumber {
-  number: number;
-  square: number;
+const palindromCheck = (a: string) => {
+  const reversedA = a.split("").reverse().join("");
+  return reversedA === a;
 }
 
-function getSquareNumbers(arr: number[]): SquareNumber[] {
-  return arr.map((num) => ({
+console.log(palindromCheck("dad"));
+// < ========== TASK N start ========== >
+
+
+
+
+
+// < ========== TASK M start ========== >
+
+function getSquareNumbers(numbers: number[]): { number: number; square: number }[] {
+  return numbers.map(num => ({
     number: num,
-    square: num * num,
+    square: num * num
   }));
 }
 
-console.log(getSquareNumbers([1, 2, 3]));
+// console.log(getSquareNumbers([1, 2, 3]));
 
 // < ========== TASK M End ========== >
 
-// // < ========== TASK L Start ========== >
 
-// function getReverse(a: string) {
-//   if(typeof a !== "string") {
-//     console.log("Please, insert a string")
-//   } else {
-//     const sorted = a.split(" ").map(word => word.split("").reverse().join(""));
-//     const result = sorted.join(" ");
-//     console.log(result);
-//   }
-// }
+
+
+// < ========== TASK L Start ========== >
+
+function getReverse(a: string) {
+  if(typeof a !== "string") {
+    console.log("Please, insert a string")
+  } else {
+    const sorted = a.split(" ").map(word => word.split("").reverse().join(""));
+    const result = sorted.join(" ");
+    console.log(result);
+  }
+}
 
 // getReverse("string number array");
 
-// // < ========== TASK L End ========== >
+// < ========== TASK L End ========== >
 
-/// MIT TASK N
+
+
 
 // < ========== TASK K Start ========== >
 
@@ -51,6 +64,8 @@ console.log(getSquareNumbers([1, 2, 3]));
 
 // console.log(countVowels("stIring"));
 // < ========== TASK K End ========== >
+
+
 
 // < ========== TASK J Start ========== >
 
