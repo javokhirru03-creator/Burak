@@ -1,3 +1,20 @@
+// < ========== TASK O start ========== >
+
+function calculateSumOfNumbers(arr: any) {
+  return arr.reduce((sum: number, item: any) => {
+    if (typeof item === "number"  && !isNaN(item)) {
+      return sum + item;
+    }
+    return sum;
+  }, 0);
+}
+
+console.log(calculateSumOfNumbers([10, NaN, "10", {son: 10}, true, 35]));
+
+// < ========== TASK O end ========== >
+
+
+
 // < ========== TASK N start ========== >
 
 const palindromCheck = (a: string) => {
@@ -5,7 +22,7 @@ const palindromCheck = (a: string) => {
   return reversedA === a;
 }
 
-console.log(palindromCheck("dad"));
+// console.log(palindromCheck("dad"));
 // < ========== TASK N start ========== >
 
 
