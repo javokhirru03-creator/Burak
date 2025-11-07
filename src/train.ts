@@ -1,3 +1,13 @@
+// < ========== TASK Q start ========== >
+
+function hasPropertyIn(obj: object, prop: string): boolean {
+  return prop in obj;
+}
+
+console.log(hasPropertyIn({ name: "BMW", model: "M3" }, "model"));
+console.log(hasPropertyIn({ name: "BMW", model: "M3" }, "year"));
+// < ========== TASK Q end ========== >
+
 // < ========== TASK P start ========== >
 
 function objectToArray<T extends object>(obj: T): [keyof T, T[keyof T]][] {
@@ -16,13 +26,11 @@ console.log(objectToArray({ a: 10, b: 20 }));
 
 // < ========== TASK P end ========== >
 
-
-
 // < ========== TASK O start ========== >
 
 function calculateSumOfNumbers(arr: any) {
   return arr.reduce((sum: number, item: any) => {
-    if (typeof item === "number"  && !isNaN(item)) {
+    if (typeof item === "number" && !isNaN(item)) {
       return sum + item;
     }
     return sum;
@@ -33,28 +41,24 @@ function calculateSumOfNumbers(arr: any) {
 
 // < ========== TASK O end ========== >
 
-
-
 // < ========== TASK N start ========== >
 
 const palindromCheck = (a: string) => {
   const reversedA = a.split("").reverse().join("");
   return reversedA === a;
-}
+};
 
 // console.log(palindromCheck("dad"));
 // < ========== TASK N start ========== >
 
-
-
-
-
 // < ========== TASK M start ========== >
 
-function getSquareNumbers(numbers: number[]): { number: number; square: number }[] {
-  return numbers.map(num => ({
+function getSquareNumbers(
+  numbers: number[]
+): { number: number; square: number }[] {
+  return numbers.map((num) => ({
     number: num,
-    square: num * num
+    square: num * num,
   }));
 }
 
@@ -62,16 +66,15 @@ function getSquareNumbers(numbers: number[]): { number: number; square: number }
 
 // < ========== TASK M End ========== >
 
-
-
-
 // < ========== TASK L Start ========== >
 
 function getReverse(a: string) {
-  if(typeof a !== "string") {
-    console.log("Please, insert a string")
+  if (typeof a !== "string") {
+    console.log("Please, insert a string");
   } else {
-    const sorted = a.split(" ").map(word => word.split("").reverse().join(""));
+    const sorted = a
+      .split(" ")
+      .map((word) => word.split("").reverse().join(""));
     const result = sorted.join(" ");
     console.log(result);
   }
@@ -80,9 +83,6 @@ function getReverse(a: string) {
 // getReverse("string number array");
 
 // < ========== TASK L End ========== >
-
-
-
 
 // < ========== TASK K Start ========== >
 
@@ -101,8 +101,6 @@ function getReverse(a: string) {
 
 // console.log(countVowels("stIring"));
 // < ========== TASK K End ========== >
-
-
 
 // < ========== TASK J Start ========== >
 
