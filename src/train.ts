@@ -1,3 +1,23 @@
+// < ========== TASK P start ========== >
+
+function objectToArray<T extends object>(obj: T): [keyof T, T[keyof T]][] {
+  const result: [keyof T, T[keyof T]][] = [];
+
+  for (const key in obj) {
+    if (Object.prototype.hasOwnProperty.call(obj, key)) {
+      result.push([key, obj[key]]);
+    }
+  }
+
+  return result;
+}
+
+console.log(objectToArray({ a: 10, b: 20 }));
+
+// < ========== TASK P end ========== >
+
+
+
 // < ========== TASK O start ========== >
 
 function calculateSumOfNumbers(arr: any) {
@@ -9,7 +29,7 @@ function calculateSumOfNumbers(arr: any) {
   }, 0);
 }
 
-console.log(calculateSumOfNumbers([10, NaN, "10", {son: 10}, true, 35]));
+// console.log(calculateSumOfNumbers([10, NaN, "10", {son: 10}, true, 35]));
 
 // < ========== TASK O end ========== >
 
