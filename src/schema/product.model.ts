@@ -10,7 +10,7 @@ import {
 
 const productSchema = new Schema(
   {
-    poductStatus: {
+    productStatus: {
       type: String,
       enum: ProductStatus,
       default: ProductStatus.PAUSE,
