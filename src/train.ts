@@ -1,3 +1,20 @@
+// < ========== TASK R start ========== >
+
+function calculate(str: string): number {
+  const numbers: string[] = str.split("+");
+  let sum: number = 0;
+
+  for (const num of numbers) {
+    sum += Number(num);
+  }
+
+  return sum;
+}
+
+console.log(calculate("1+3")); // 4
+
+// < ========== TASK R end ========== >
+
 // < ========== TASK Q start ========== >
 
 function hasPropertyIn(obj: object, prop: string): boolean {
