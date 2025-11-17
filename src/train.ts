@@ -1,3 +1,13 @@
+// < ========== TASK T start ========== >
+
+function mergeSortedArrays(arr1: number[], arr2: number[]): number[] {
+  return [...arr1, ...arr2].sort((a, b) => a - b);
+}
+console.log(mergeSortedArrays([0, 3, 4, 31], [4, 6, 30]));
+// Natija: [0, 3, 4, 4, 6, 30, 31]
+
+// < ========== TASK T start ========== >
+
 // < ========== TASK R start ========== >
 
 function calculate(str: string): number {
