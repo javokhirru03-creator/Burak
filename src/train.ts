@@ -1,3 +1,40 @@
+// < ========== TASK v start ========== >
+
+function countChars(str: string): Record<string, number> {
+  const result: Record<string, number> = {};
+
+  for (const char of str) {
+    result[char] = (result[char] || 0) + 1;
+  }
+
+  return result;
+}
+
+// Test
+console.log(countChars("hello"));
+// { h: 1, e: 1, l: 2, o: 1 }
+
+// < ========== TASK v start ========== >
+
+// < ========== TASK U start ========== >
+
+function sumOdds(n: number): number {
+  if (!Number.isFinite(n)) throw new TypeError("n should be a finite number");
+  const max = Math.floor(n); // butun qismga tushiramiz
+  if (max <= 0) return 0; // 0 yoki manfiy uchun 0 ta toq son
+  return Math.floor(max / 2); // < n ichidagi toq sonlar soni = floor(n/2)
+}
+
+// Testlar
+console.log(sumOdds(9)); // 4
+console.log(sumOdds(11)); // 5
+console.log(sumOdds(0)); // 0
+console.log(sumOdds(1)); // 0
+console.log(sumOdds(2)); // 1
+console.log(sumOdds(7.8)); // floor(7.8)=7 -> floor(7/2)=3
+
+// < ========== TASK U start ========== >
+
 // < ========== TASK T start ========== >
 
 function mergeSortedArrays(arr1: number[], arr2: number[]): number[] {
