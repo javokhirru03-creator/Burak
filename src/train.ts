@@ -1,3 +1,23 @@
+// < ========== TASK W start ========== >
+
+function chunkArray(arr: number[], size: number): number[][] {
+  let newArr = [];
+  for(let i = 0; i < arr.length; i += size) {
+    const chunk = arr.slice(i, i + size);
+    newArr.push(chunk);
+  }
+  return newArr;
+}
+
+console.log(chunkArray([1,2,3,4,5,6,7,8,9,10], 4)); 
+
+// < ========== TASK W end ========== >
+
+
+
+
+
+
 // < ========== TASK V start ========== >
 function countChars(str: string): Record<string, number> {
   const result: Record<string, number> = {};
@@ -13,7 +33,7 @@ function countChars(str: string): Record<string, number> {
   return result;
 }
 
-console.log(countChars("hello")); 
+// console.log(countChars("hello")); 
 
 
 // better vs
@@ -29,7 +49,7 @@ function countCharss(str: string){
     return obj;
 }
 
-console.log(countCharss("hello")); 
+// console.log(countCharss("hello")); 
 
 // < ========== TASK V end ========== >
 
