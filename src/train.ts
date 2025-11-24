@@ -1,76 +1,133 @@
-// < ========== TASK v start ========== >
-
+// < ========== TASK V start ========== >
 function countChars(str: string): Record<string, number> {
   const result: Record<string, number> = {};
 
   for (const char of str) {
-    result[char] = (result[char] || 0) + 1;
+    if (result[char]) {
+      result[char] += 1;
+    } else {
+      result[char] = 1;
+    }
   }
 
   return result;
 }
 
-// Test
-console.log(countChars("hello"));
-// { h: 1, e: 1, l: 2, o: 1 }
+console.log(countChars("hello")); 
 
-// < ========== TASK v start ========== >
+
+// better vs
+function countCharss(str: string){
+  let obj = new Map<string, number>();
+  for (const char of str) {
+        if (obj.has(char)) {
+            obj.set(char, obj.get(char)! + 1);
+        } else {
+            obj.set(char, 1);
+        }
+    }
+    return obj;
+}
+
+console.log(countCharss("hello")); 
+
+// < ========== TASK V end ========== >
+
+
+
+
+
 
 // < ========== TASK U start ========== >
 
-function sumOdds(n: number): number {
-  if (!Number.isFinite(n)) throw new TypeError("n should be a finite number");
-  const max = Math.floor(n); // butun qismga tushiramiz
-  if (max <= 0) return 0; // 0 yoki manfiy uchun 0 ta toq son
-  return Math.floor(max / 2); // < n ichidagi toq sonlar soni = floor(n/2)
-}
-
-// Testlar
-console.log(sumOdds(9)); // 4
-console.log(sumOdds(11)); // 5
-console.log(sumOdds(0)); // 0
-console.log(sumOdds(1)); // 0
-console.log(sumOdds(2)); // 1
-console.log(sumOdds(7.8)); // floor(7.8)=7 -> floor(7/2)=3
-
-// < ========== TASK U start ========== >
-
-// < ========== TASK T start ========== >
-
-function mergeSortedArrays(arr1: number[], arr2: number[]): number[] {
-  return [...arr1, ...arr2].sort((a, b) => a - b);
-}
-console.log(mergeSortedArrays([0, 3, 4, 31], [4, 6, 30]));
-// Natija: [0, 3, 4, 4, 6, 30, 31]
-
-// < ========== TASK T start ========== >
-
-// < ========== TASK R start ========== >
-
-function calculate(str: string): number {
-  const numbers: string[] = str.split("+");
-  let sum: number = 0;
-
-  for (const num of numbers) {
-    sum += Number(num);
+function sumOdds(num: number): number {
+  let sum = 0;
+  for(let i = 0; i < num; i++) {
+    let z = i % 2
+    if(z === 1) {
+      sum ++;
+    }
   }
-
   return sum;
 }
 
-console.log(calculate("1+3")); // 4
+// console.log(sumOdds(9)); 
 
-// < ========== TASK R end ========== >
+// < ========== TASK U end ========== >
 
-// < ========== TASK Q start ========== >
 
-function hasPropertyIn(obj: object, prop: string): boolean {
-  return prop in obj;
+
+
+
+// < ========== TASK T start ========== >
+
+function mergeSortedArrays(a: number[], b: number[]): number[]{
+  const combinedArr = [...a, ...b];
+  const sortedArr = combinedArr.sort((x, y) => {return x - y});
+  return sortedArr;
 }
 
-console.log(hasPropertyIn({ name: "BMW", model: "M3" }, "model"));
-console.log(hasPropertyIn({ name: "BMW", model: "M3" }, "year"));
-// < ========== TASK Q end ========== >
+// console.log(mergeSortedArrays([9, 12, 34], [ 3, 6, 7]));
+
+//better vs:
+function mergeSortedArrayssssss(a: number[], b: number[]): number[] {
+  return [...a, ...b].sort((x, y) => x - y);
+}
+
+// console.log(mergeSortedArrayssssss([3, 2, 0, 1, 45], [ 5, 4, 37, 25])); 
+// console.log(mergeSortedArrayssssss([9, 12, 34], [ 3, 6, 7]));
+
+// < ========== TASK T end ========== >
+
+
+
+
+// < ========== TASK S start ========== >
+
+function missingNumber(nums: number[]): number {
+  const n = nums.length;
+  const expectedSum = (n * (n + 1)) / 2;
+  const actualSum = nums.reduce((sum, num) => sum + num, 0);
+  return expectedSum - actualSum;
+}
+
+// console.log(missingNumber([3, 2, 0, 1, 5, 4, 7])); 
+
+// < ========== TASK S end ========== >
+
+
+
+
+
+// < ========== TASK P start ========== >
+
+function calculate(numStr: string) {
+  const [a, b] = numStr.split('+').map(ele => Number(ele));
+  return a + b;
+}
+
+// console.log(calculate("4+7"));
+
+// < ========== TASK P end ========== >
+
+
+
+
+
+
+// < ========== TASK P start ========== >
+
+function hasProperty(obj: object, str: string){
+  const keys = Object.keys(obj);
+  return keys.includes(str);
+}
+
+// console.log(hasProperty({name: "BMW", model: "M3"}, "key"));
+
+// < ========== TASK P end ========== >
+
+
+
 
 // < ========== TASK P start ========== >
 
@@ -86,15 +143,17 @@ function objectToArray<T extends object>(obj: T): [keyof T, T[keyof T]][] {
   return result;
 }
 
-console.log(objectToArray({ a: 10, b: 20 }));
+// console.log(objectToArray({ a: 10, b: 20 }));
 
 // < ========== TASK P end ========== >
+
+
 
 // < ========== TASK O start ========== >
 
 function calculateSumOfNumbers(arr: any) {
   return arr.reduce((sum: number, item: any) => {
-    if (typeof item === "number" && !isNaN(item)) {
+    if (typeof item === "number"  && !isNaN(item)) {
       return sum + item;
     }
     return sum;
@@ -105,24 +164,28 @@ function calculateSumOfNumbers(arr: any) {
 
 // < ========== TASK O end ========== >
 
+
+
 // < ========== TASK N start ========== >
 
 const palindromCheck = (a: string) => {
   const reversedA = a.split("").reverse().join("");
   return reversedA === a;
-};
+}
 
 // console.log(palindromCheck("dad"));
 // < ========== TASK N start ========== >
 
+
+
+
+
 // < ========== TASK M start ========== >
 
-function getSquareNumbers(
-  numbers: number[]
-): { number: number; square: number }[] {
-  return numbers.map((num) => ({
+function getSquareNumbers(numbers: number[]): { number: number; square: number }[] {
+  return numbers.map(num => ({
     number: num,
-    square: num * num,
+    square: num * num
   }));
 }
 
@@ -130,15 +193,16 @@ function getSquareNumbers(
 
 // < ========== TASK M End ========== >
 
+
+
+
 // < ========== TASK L Start ========== >
 
 function getReverse(a: string) {
-  if (typeof a !== "string") {
-    console.log("Please, insert a string");
+  if(typeof a !== "string") {
+    console.log("Please, insert a string")
   } else {
-    const sorted = a
-      .split(" ")
-      .map((word) => word.split("").reverse().join(""));
+    const sorted = a.split(" ").map(word => word.split("").reverse().join(""));
     const result = sorted.join(" ");
     console.log(result);
   }
@@ -148,37 +212,42 @@ function getReverse(a: string) {
 
 // < ========== TASK L End ========== >
 
+
+
+
 // < ========== TASK K Start ========== >
 
-// function countVowels(str: string): number {
-//   const vowels = "aeiouAEIOU";
-//   let count = 0;
+function countVowels(str: string): number {
+  const vowels = "aeiouAEIOU";
+  let count = 0;
 
-//   for(const char of str) {
-//     if(vowels.includes(char)) {
-//       count++;
-//     }
-//   }
+  for(const char of str) {
+    if(vowels.includes(char)) {
+      count++;
+    }
+  }
 
-//   return count;
-// }
+  return count;
+}
 
 // console.log(countVowels("stIring"));
 // < ========== TASK K End ========== >
 
+
+
 // < ========== TASK J Start ========== >
 
-// const findLongestWord = (words: string) => {
-//   const subWord = words.split(" ");
-//   let longest = subWord[0];
+const findLongestWord = (words: string) => {
+  const subWord = words.split(" ");
+  let longest = subWord[0];
 
-//   for (const item of subWord) {
-//     if (item.length > longest.length) {
-//       longest = item;
-//     }
-//   }
-//   return longest;
-// };
+  for (const item of subWord) {
+    if (item.length > longest.length) {
+      longest = item;
+    }
+  }
+  return longest;
+};
 
 // console.log(findLongestWord("I love learning JavaScript"));
 
@@ -186,29 +255,29 @@ function getReverse(a: string) {
 
 // < ========== TASK I Start ========== >
 
-// function majorityElement(nums: number[]) {
-//   interface N {
-//     [key: number]: number;
-//   }
+function majorityElement(nums: number[]) {
+  interface N {
+    [key: number]: number;
+  }
 
-//   const countMap: N = {};
+  const countMap: N = {};
 
-//   for (const num of nums) {
-//     countMap[num] = (countMap[num] || 0) + 1;
-//   }
+  for (const num of nums) {
+    countMap[num] = (countMap[num] || 0) + 1;
+  }
 
-//   let maxCount = 0;
-//   let majority = nums[0];
+  let maxCount = 0;
+  let majority = nums[0];
 
-//   for (const num in countMap) {
-//     if (countMap[num] > maxCount) {
-//       maxCount = countMap[num];
-//       majority = Number(num);
-//     }
-//   }
+  for (const num in countMap) {
+    if (countMap[num] > maxCount) {
+      maxCount = countMap[num];
+      majority = Number(num);
+    }
+  }
 
-//   return majority;
-// }
+  return majority;
+}
 
 // console.log(majorityElement([1, 2, 3, 4, 5, 4, 3, 4]));
 
@@ -216,16 +285,16 @@ function getReverse(a: string) {
 
 // < ========== TASK H2 Start ========== >
 
-// const getDigits = (str: string) => {
-//   let digits: string = "";
+const getDigits = (str: string) => {
+  let digits: string = "";
 
-//   for (const char of str){
-//     if (!isNaN(Number(char))){
-//       digits += char;
-//     }
-//   }
-//   return digits;
-// }
+  for (const char of str){
+    if (!isNaN(Number(char))){
+      digits += char;
+    }
+  }
+  return digits;
+}
 
 // console.log(getDigits("sch00ln1"));
 
@@ -233,24 +302,25 @@ function getReverse(a: string) {
 
 // < ========== TASK H Start ========== >
 
-// function getPositive(arr: number[]): string {
-//   return arr
-//     .filter((num) => num > 0)
-//     .map((num) => String(num))
-//     .join("");
-// }
+function getPositive(arr: number[]): string {
+  return arr
+    .filter((num) => num > 0)
+    .map((num) => String(num))
+    .join("");
+}
 
 // console.log(getPositive([5, -7, 2]));
 // < ========== TASK H end ========== >
 
 // < ========== TASK G start ========== >
 
-// function getHighestIndex(arr: number[]) {
-//   const maxValue = Math.max(...arr);
-//   const index = arr.indexOf(maxValue);
-//   return index;
-// }
+function getHighestIndex(arr: number[]) {
+  const maxValue = Math.max(...arr);
+  const index = arr.indexOf(maxValue);
+  return index;
+}
 
 // console.log(getHighestIndex([4, 65, 23, 43, 765]));
 
 // < ========== TASK G end ========== >
+
