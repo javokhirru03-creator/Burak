@@ -11,6 +11,9 @@ import * as bcrypt from "bcryptjs";
 import { shapeIntoMongooseObjectId } from "../libs/config";
 
 class MemberService {
+  authService(token: any): any {
+    throw new Error("Method not implemented.");
+  }
   private readonly memberModel;
 
   constructor() {
