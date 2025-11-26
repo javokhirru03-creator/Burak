@@ -1,22 +1,48 @@
+// < ========== TASK X start ========== >
+function countOccurrences(obj: any, key: string): number {
+  let count = 0;
+
+  function helper(current: any) {
+    if (typeof current !== "object" || current === null) return;
+
+    for (const k in current) {
+      if (k === key) {
+        count++;
+      }
+
+      // Agar value object bo'lsa, ichkariga kiramiz
+      helper(current[k]);
+    }
+  }
+
+  helper(obj);
+  return count;
+}
+
+// TEST
+console.log(
+  countOccurrences(
+    { model: "Bugatti", steer: { model: "HANKOOK", size: 30 } },
+    "model"
+  )
+); // 2
+
+// < ========== TASK X start ========== >
+
 // < ========== TASK W start ========== >
 
 function chunkArray(arr: number[], size: number): number[][] {
   let newArr = [];
-  for(let i = 0; i < arr.length; i += size) {
+  for (let i = 0; i < arr.length; i += size) {
     const chunk = arr.slice(i, i + size);
     newArr.push(chunk);
   }
   return newArr;
 }
 
-console.log(chunkArray([1,2,3,4,5,6,7,8,9,10], 4)); 
+console.log(chunkArray([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 4));
 
 // < ========== TASK W end ========== >
-
-
-
-
-
 
 // < ========== TASK V start ========== >
 function countChars(str: string): Record<string, number> {
@@ -33,57 +59,49 @@ function countChars(str: string): Record<string, number> {
   return result;
 }
 
-// console.log(countChars("hello")); 
-
+// console.log(countChars("hello"));
 
 // better vs
-function countCharss(str: string){
+function countCharss(str: string) {
   let obj = new Map<string, number>();
   for (const char of str) {
-        if (obj.has(char)) {
-            obj.set(char, obj.get(char)! + 1);
-        } else {
-            obj.set(char, 1);
-        }
+    if (obj.has(char)) {
+      obj.set(char, obj.get(char)! + 1);
+    } else {
+      obj.set(char, 1);
     }
-    return obj;
+  }
+  return obj;
 }
 
-// console.log(countCharss("hello")); 
+// console.log(countCharss("hello"));
 
 // < ========== TASK V end ========== >
-
-
-
-
-
 
 // < ========== TASK U start ========== >
 
 function sumOdds(num: number): number {
   let sum = 0;
-  for(let i = 0; i < num; i++) {
-    let z = i % 2
-    if(z === 1) {
-      sum ++;
+  for (let i = 0; i < num; i++) {
+    let z = i % 2;
+    if (z === 1) {
+      sum++;
     }
   }
   return sum;
 }
 
-// console.log(sumOdds(9)); 
+// console.log(sumOdds(9));
 
 // < ========== TASK U end ========== >
 
-
-
-
-
 // < ========== TASK T start ========== >
 
-function mergeSortedArrays(a: number[], b: number[]): number[]{
+function mergeSortedArrays(a: number[], b: number[]): number[] {
   const combinedArr = [...a, ...b];
-  const sortedArr = combinedArr.sort((x, y) => {return x - y});
+  const sortedArr = combinedArr.sort((x, y) => {
+    return x - y;
+  });
   return sortedArr;
 }
 
@@ -94,13 +112,10 @@ function mergeSortedArrayssssss(a: number[], b: number[]): number[] {
   return [...a, ...b].sort((x, y) => x - y);
 }
 
-// console.log(mergeSortedArrayssssss([3, 2, 0, 1, 45], [ 5, 4, 37, 25])); 
+// console.log(mergeSortedArrayssssss([3, 2, 0, 1, 45], [ 5, 4, 37, 25]));
 // console.log(mergeSortedArrayssssss([9, 12, 34], [ 3, 6, 7]));
 
 // < ========== TASK T end ========== >
-
-
-
 
 // < ========== TASK S start ========== >
 
@@ -111,18 +126,14 @@ function missingNumber(nums: number[]): number {
   return expectedSum - actualSum;
 }
 
-// console.log(missingNumber([3, 2, 0, 1, 5, 4, 7])); 
+// console.log(missingNumber([3, 2, 0, 1, 5, 4, 7]));
 
 // < ========== TASK S end ========== >
-
-
-
-
 
 // < ========== TASK P start ========== >
 
 function calculate(numStr: string) {
-  const [a, b] = numStr.split('+').map(ele => Number(ele));
+  const [a, b] = numStr.split("+").map((ele) => Number(ele));
   return a + b;
 }
 
@@ -130,14 +141,9 @@ function calculate(numStr: string) {
 
 // < ========== TASK P end ========== >
 
-
-
-
-
-
 // < ========== TASK P start ========== >
 
-function hasProperty(obj: object, str: string){
+function hasProperty(obj: object, str: string) {
   const keys = Object.keys(obj);
   return keys.includes(str);
 }
@@ -145,9 +151,6 @@ function hasProperty(obj: object, str: string){
 // console.log(hasProperty({name: "BMW", model: "M3"}, "key"));
 
 // < ========== TASK P end ========== >
-
-
-
 
 // < ========== TASK P start ========== >
 
@@ -167,13 +170,11 @@ function objectToArray<T extends object>(obj: T): [keyof T, T[keyof T]][] {
 
 // < ========== TASK P end ========== >
 
-
-
 // < ========== TASK O start ========== >
 
 function calculateSumOfNumbers(arr: any) {
   return arr.reduce((sum: number, item: any) => {
-    if (typeof item === "number"  && !isNaN(item)) {
+    if (typeof item === "number" && !isNaN(item)) {
       return sum + item;
     }
     return sum;
@@ -184,28 +185,24 @@ function calculateSumOfNumbers(arr: any) {
 
 // < ========== TASK O end ========== >
 
-
-
 // < ========== TASK N start ========== >
 
 const palindromCheck = (a: string) => {
   const reversedA = a.split("").reverse().join("");
   return reversedA === a;
-}
+};
 
 // console.log(palindromCheck("dad"));
 // < ========== TASK N start ========== >
 
-
-
-
-
 // < ========== TASK M start ========== >
 
-function getSquareNumbers(numbers: number[]): { number: number; square: number }[] {
-  return numbers.map(num => ({
+function getSquareNumbers(
+  numbers: number[]
+): { number: number; square: number }[] {
+  return numbers.map((num) => ({
     number: num,
-    square: num * num
+    square: num * num,
   }));
 }
 
@@ -213,16 +210,15 @@ function getSquareNumbers(numbers: number[]): { number: number; square: number }
 
 // < ========== TASK M End ========== >
 
-
-
-
 // < ========== TASK L Start ========== >
 
 function getReverse(a: string) {
-  if(typeof a !== "string") {
-    console.log("Please, insert a string")
+  if (typeof a !== "string") {
+    console.log("Please, insert a string");
   } else {
-    const sorted = a.split(" ").map(word => word.split("").reverse().join(""));
+    const sorted = a
+      .split(" ")
+      .map((word) => word.split("").reverse().join(""));
     const result = sorted.join(" ");
     console.log(result);
   }
@@ -232,17 +228,14 @@ function getReverse(a: string) {
 
 // < ========== TASK L End ========== >
 
-
-
-
 // < ========== TASK K Start ========== >
 
 function countVowels(str: string): number {
   const vowels = "aeiouAEIOU";
   let count = 0;
 
-  for(const char of str) {
-    if(vowels.includes(char)) {
+  for (const char of str) {
+    if (vowels.includes(char)) {
       count++;
     }
   }
@@ -252,8 +245,6 @@ function countVowels(str: string): number {
 
 // console.log(countVowels("stIring"));
 // < ========== TASK K End ========== >
-
-
 
 // < ========== TASK J Start ========== >
 
@@ -308,13 +299,13 @@ function majorityElement(nums: number[]) {
 const getDigits = (str: string) => {
   let digits: string = "";
 
-  for (const char of str){
-    if (!isNaN(Number(char))){
+  for (const char of str) {
+    if (!isNaN(Number(char))) {
       digits += char;
     }
   }
   return digits;
-}
+};
 
 // console.log(getDigits("sch00ln1"));
 
@@ -343,4 +334,3 @@ function getHighestIndex(arr: number[]) {
 // console.log(getHighestIndex([4, 65, 23, 43, 765]));
 
 // < ========== TASK G end ========== >
-
