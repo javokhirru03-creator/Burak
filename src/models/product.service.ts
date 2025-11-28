@@ -12,12 +12,18 @@ import { T } from "../libs/types/common";
 import productController from "../controllers/product.controller";
 import { ProductCollection } from "../libs/enums/product.enum";
 import { ObjectId } from "mongoose";
+import ViewService from "./View.service";
+import { LoginInput } from "../libs/types/member";
+import { ViewGroup } from "../libs/enums/view.enoum";
+import { ViewInput } from "../libs/types/view";
 
 class ProductService {
   private readonly productModel;
+  public viewService;
 
   constructor() {
     this.productModel = ProductModel;
+    this.viewService = new ViewService();
   }
 
   /** SPA */
@@ -61,15 +67,39 @@ class ProductService {
   ): Promise<Product> {
     const productId = shapeIntoMongooseObjectId(id);
 
-    let result = this.productModel.findOne({
-      _id: productId,
-      productStatus: ProductStatus.PROCESS,
-    }).exec();
+    let result = this.productModel
+      .findOne({
+        _id: productId,
+        productStatus: ProductStatus.PROCESS,
+      })
+      .exec();
 
-    if(!result)
-      throw new Errors(HttpCode.NOT_MODIFIED, Message.UPDATE_FAILED);
+    if (!result) throw new Errors(HttpCode.NOT_MODIFIED, Message.UPDATE_FAILED);
 
-    // TODO: If authenticated users => first time => view log creation
+    if (memberId) {
+      // check existance
+      const input: ViewInput = {
+        memberId: memberId,
+        viewRefId: productId,
+        viewGroup: ViewGroup.PRODUCT,
+      };
+      const existView = await this.viewService.checkViewExistence(input);
+
+      console.log("exist:", !!existView);
+      if (!existView) {
+        // insert views
+        await this.viewService.insertMemberView(input);
+
+        // increase counts
+        result = await this.productModel
+          .findByIdAndUpdate(
+            productId,
+            { $inc: { productViews: +1 } },
+            { new: true }
+          )
+          .exec();
+      }
+    }
 
     return result;
   }
