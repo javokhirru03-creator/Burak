@@ -1,3 +1,25 @@
+// < ========== TASK W start ========== >
+
+function findIntersection(arr1: number[], arr2: number[]): number[] {
+  const result: number[] = [];
+
+  for (const num of arr1) {
+    if (arr2.includes(num)) {
+      result.push(num);
+    }
+  }
+
+  return result;
+}
+
+
+console.log(findIntersection([1, 2, 3], [3, 2, 0]));
+
+
+// < ========== TASK W end ========== >
+
+
+
 // < ========== TASK X start ========== >
 
 function countOccurrences(obj: any, str: string): number {
@@ -18,12 +40,12 @@ function countOccurrences(obj: any, str: string): number {
   return counter;
 }
 
-console.log(
-  countOccurrences(
-    { model: "Bugatti", steer: { model: "HANKOOK", size: 30 } },
-    "model"
-  )
-);
+// console.log(
+//   countOccurrences(
+//     { model: "Bugatti", steer: { model: "HANKOOK", size: 30 } },
+//     "model"
+//   )
+// );
 
 // < ========== TASK X end ========== >
 
