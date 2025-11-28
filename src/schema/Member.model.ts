@@ -52,7 +52,7 @@ const memberSchema = new Schema(
       default: 0,
     },
   },
-  { timestamps: true } // uptadedAt, createdAt support
+  { timestamps: true, collection: "members" } // uptadedAt, createdAt support
 );
 
 export default mongoose.model('Member', memberSchema);
