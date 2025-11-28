@@ -1,33 +1,31 @@
 // < ========== TASK X start ========== >
-function countOccurrences(obj: any, key: string): number {
-  let count = 0;
 
-  function helper(current: any) {
-    if (typeof current !== "object" || current === null) return;
+function countOccurrences(obj: any, str: string): number {
+  let counter = 0;
 
-    for (const k in current) {
-      if (k === key) {
-        count++;
-      }
+  for (let key in obj) {
+    if (key === str) {
+      counter++;
+    }
 
-      // Agar value object bo'lsa, ichkariga kiramiz
-      helper(current[k]);
+    const value = obj[key];
+
+    if (typeof value === "object") {
+      counter += countOccurrences(value, str);
     }
   }
 
-  helper(obj);
-  return count;
+  return counter;
 }
 
-// TEST
 console.log(
   countOccurrences(
     { model: "Bugatti", steer: { model: "HANKOOK", size: 30 } },
     "model"
   )
-); // 2
+);
 
-// < ========== TASK X start ========== >
+// < ========== TASK X end ========== >
 
 // < ========== TASK W start ========== >
 
@@ -40,7 +38,7 @@ function chunkArray(arr: number[], size: number): number[][] {
   return newArr;
 }
 
-console.log(chunkArray([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 4));
+// console.log(chunkArray([1,2,3,4,5,6,7,8,9,10], 4));
 
 // < ========== TASK W end ========== >
 
